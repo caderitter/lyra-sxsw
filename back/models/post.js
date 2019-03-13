@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
   id: String,
-  type: String,
+  userId: String,
   ref: String,
   timestamp: Date,
   likes: [{userId: String}],
