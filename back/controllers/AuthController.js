@@ -15,7 +15,7 @@ router.post('/', function(req, res) {
         },
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + (new Buffer(config.clientID + ':' + clientSecret).toString('base64'))
+            'Authorization': 'Basic ' + (new Buffer(config.clientID + ':' + config.clientSecret).toString('base64'))
         }
     }
     
