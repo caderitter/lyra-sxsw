@@ -28,20 +28,31 @@ router.post('/create_post', function (req, res) {
     }
 });
 
-// router.post('/add_comment', function(req, res) {
-//     if (req.body.user_id) {
-//         if (req.body.post_id) {
-//             if (req.body.comment_body) {
-//                 Post.update()
-//             } else {
-//                 res.status(400).send("No comment body specified");
-//             }
-//         } else {
-//             res.status(400).send("No post specified");
-//         }
-//     } else {
-//         res.status(400).send("No user specified");
-//     }
-// })
+router.post('/add_comment', function(req, res) {
+    if (req.body.user_id) {
+        if (req.body.post_id) {
+            if (req.body.comment_body) {
+                Post.findOne({post_id: req.body.post_id}, function (err, doc) {
+                    if (err) return res.status(404).send("Could not find specified post");
+                    doc.comments.push({
+                        userId: req.body.user_id,
+                        body: req.body.comment_body,
+                        timestamp: Date.now()
+                    })
+                    doc.save(function (err, post) {
+                        if (err) return res.status(500).send(err)
+                        res.status(200).send(post)
+                    })
+                })
+            } else {
+                res.status(400).send("No comment body specified");
+            }
+        } else {
+            res.status(400).send("No post specified");
+        }
+    } else {
+        res.status(400).send("No user specified");
+    }
+})
 
 module.exports = router;

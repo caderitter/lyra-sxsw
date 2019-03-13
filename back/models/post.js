@@ -5,7 +5,7 @@ var PostSchema = new mongoose.Schema({
   ref: String,
   timestamp: Date,
   likes: [{userId: String}],
-  comments: [{userID: String, body: String, timestamp: Date}]
+  comments: [{userId: String, body: String, timestamp: Date}]
 });
 
 Post = mongoose.model('Post', PostSchema);
