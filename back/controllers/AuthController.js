@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var Item = require('../models/user');
-var config = require('../config')();
-const request = require('request-promise-native');
+var config = require('../config');
+var request = require('request-promise-native');
 
 
 router.post('/auth', function(req, res) {
