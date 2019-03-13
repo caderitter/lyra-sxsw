@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
-var Item = require('../models/user');
 var config = require('../config');
-var request = require('request-promise-native');
+const request = require('request-promise-native');
 
 
-router.post('/auth', function(req, res) {
+router.post('/', function(req, res) {
     const options = {
         method: 'POST',
         uri: 'https://accounts.spotify.com/api/token',
