@@ -28,7 +28,7 @@ router.post('/create_post', function (req, res) {
     }
 });
 
-router.post('/add_comment', function(req, res) {
+router.put('/add_comment', function(req, res) {
     if (req.body.user_id) {
         if (req.body.post_id) {
             if (req.body.comment_body) {
