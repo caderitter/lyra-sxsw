@@ -3,30 +3,25 @@ import { Media } from 'reactstrap';
 
 const axios = require('axios');
 var _baseUri = 'https://api.spotify.com/v1';
+var _baseUriEmbed = 'https://open.spotify.com/embed/';
 
 {/* spotify:user:mollitha */}
 {/* spotify:track:6PInkrdWpzFi6c4Ffrzs3q - Baybee by Jay Som*/}
 {/* would need to get this data from the db */}
+
+let type = "track";
+let id = "6PInkrdWpzFi6c4Ffrzs3q";
+let username = "mollitha"
 
 const Post = (props) => {
 
   let propic;
   let username;
 
-  axios.get(`${_baseUri}/users/mollitha`)
+  axios.get(`${_baseUri}/users/${username}`)
   .then(res => {
     propic = res.images[0];
-    username = res.display_name;
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-  let spotifyObj;
-
-  axios.get(`${_baseUri}/tracks/6PInkrdWpzFi6c4Ffrzs3q`)
-  .then(res => {
-    spotifyObj = res;
+    displayname = res.display_name;
   })
   .catch(err => {
     console.log(err);
@@ -42,10 +37,14 @@ const Post = (props) => {
       </Media>
       <Media body>
         <Media heading>
-          	{{username}} 
+          	{{displayname}} 
         </Media>
         <p>
-        	{{spotifyObj}}
+          {{spotifyObj}}
+          <iframe 
+            src={_baseUriEmbed + "/" + type + "/" + id}
+            width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media">
+          </iframe>
         </p> 
         <p>
         	"mmm love this groovy tune"
