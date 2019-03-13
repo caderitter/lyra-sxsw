@@ -32,7 +32,7 @@ router.put('/add_comment', function(req, res) {
     if (req.body.user_id) {
         if (req.body.post_id) {
             if (req.body.comment_body) {
-                Post.findOne({post_id: req.body.post_id}, function (err, doc) {
+                Post.findById(req.body.post_id, function (err, doc) {
                     if (err) return res.status(404).send("Could not find specified post");
                     doc.comments.push({
                         userId: req.body.user_id,
